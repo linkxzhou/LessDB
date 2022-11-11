@@ -1,4 +1,4 @@
-package api
+package tests
 
 import (
 	"encoding/json"
@@ -15,5 +15,7 @@ func Handle(c server.Context) interface{} {
     }`
 	var result map[string]interface{}
 	json.Unmarshal([]byte(coronaVirusJSON), &result)
+	result["RealIP"] = c.RealIP()
+	result["Path"] = c.Path()
 	return result
 }
